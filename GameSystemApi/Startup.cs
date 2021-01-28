@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+using TbspRpgLib;
 
 namespace GameSystemApi
 {
@@ -26,6 +29,10 @@ namespace GameSystemApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            LibStartup.ConfigureTbspRpgServices(Configuration, services);
+
+            //start workers
+            //services.AddHostedService<MyNewGameEventProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +47,9 @@ namespace GameSystemApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            LibStartup.ConfigureTbspRpg(app);
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
