@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 
 using GameSystemApi.Repositories;
+using GameSystemApi.Services;
 
 using TbspRpgLib;
 
@@ -39,6 +40,9 @@ namespace GameSystemApi
             services.AddDbContext<GameSystemContext>(
                 options => options.UseNpgsql(connectionString)
             );
+
+            services.AddScoped<IGameSystemRepository, GameSystemRepository>();
+            services.AddScoped<IGameSystemService, GameSystemService>();
 
             //start workers
             //services.AddHostedService<MyNewGameEventProcessor>();
