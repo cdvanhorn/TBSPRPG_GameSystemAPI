@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 using GameSystemApi.Repositories;
 using GameSystemApi.Services;
+using GameSystemApi.EventProcessors;
 
 using TbspRpgLib;
 
@@ -43,9 +44,10 @@ namespace GameSystemApi
 
             services.AddScoped<IGameSystemRepository, GameSystemRepository>();
             services.AddScoped<IGameSystemService, GameSystemService>();
+            services.AddScoped<IEnterLocationEventHandler, EnterLocationEventHandler>();
 
             //start workers
-            //services.AddHostedService<MyNewGameEventProcessor>();
+            services.AddHostedService<EventProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

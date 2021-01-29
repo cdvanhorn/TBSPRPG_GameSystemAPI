@@ -19,6 +19,7 @@ namespace GameSystemApi.EventProcessors {
             //Game game = _gameAdapter.ToEntity(gameAggregate);
             
             //get what checks need to be done from the adventure api
+            Console.WriteLine("handling new location event");
 
             //oncomplete send enter_location_check_result event
         }

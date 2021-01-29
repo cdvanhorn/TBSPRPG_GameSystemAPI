@@ -63,7 +63,8 @@ namespace GameSystemApi.EventProcessors
                     //save the changes
                     context.SaveChanges();
                     transaction.Commit();
-                } catch (Exception) {
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
                     transaction.Rollback();
                     throw new Exception("event processor error");
                 }
