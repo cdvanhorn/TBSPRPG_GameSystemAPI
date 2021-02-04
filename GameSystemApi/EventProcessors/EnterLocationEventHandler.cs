@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 
 using TbspRpgLib.Aggregates;
 using TbspRpgLib.Events;
-using TbspRpgLib.Events.Content;
+using TbspRpgLib.Events.Location.Content;
+using TbspRpgLib.Events.Location;
 
 namespace GameSystemApi.EventProcessors {
     public interface IEnterLocationEventHandler : IEventHandler {
@@ -25,8 +26,8 @@ namespace GameSystemApi.EventProcessors {
             Console.WriteLine("handling new location event");
 
             //create an enter_location_check event, default to success
-            Event enterLocationCheckEvent = new EnterLocationCheckEvent(
-                new EnterLocationCheck() {
+            Event enterLocationCheckEvent = new LocationEnterCheckEvent(
+                new LocationEnterCheck() {
                     Id = gameAggregate.Id,
                     Result = true
                 }
