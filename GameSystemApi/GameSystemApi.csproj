@@ -17,5 +17,9 @@
     <PackageReference Include="TbspRpgLib" Version="1.1.33" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers" />
+  </ItemGroup>
+
 
 </Project>
