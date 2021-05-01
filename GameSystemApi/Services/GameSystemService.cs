@@ -7,7 +7,7 @@ namespace GameSystemApi.Services {
     }
 
     public class GameSystemService : ServiceTrackingService, IGameSystemService {
-        private IGameSystemRepository _repository;
+        private readonly IGameSystemRepository _repository;
 
         public GameSystemService(IGameSystemRepository repository) : base(repository) {
             _repository = repository;

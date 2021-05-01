@@ -6,7 +6,7 @@ namespace GameSystemApi.Repositories {
     }
 
     public class GameSystemRepository : ServiceTrackingRepository, IGameSystemRepository {
-        private GameSystemContext _context;
+        private readonly GameSystemContext _context;
 
         public GameSystemRepository(GameSystemContext context) : base(context) {
             _context = context;

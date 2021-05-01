@@ -13,10 +13,10 @@ namespace GameSystemApi.EventProcessors {
 
     public class EnterLocationEventHandler : EventHandler, IEnterLocationEventHandler {
 
-        private IEventService _eventService;
+        private readonly IAggregateService _aggregateService;
 
-        public EnterLocationEventHandler(IEventService eventService) : base() {
-            _eventService = eventService;
+        public EnterLocationEventHandler(IAggregateService aggregateService) : base() {
+            _aggregateService = aggregateService;
         }
 
         public async Task HandleEvent(GameAggregate gameAggregate, Event evnt) {
@@ -34,7 +34,10 @@ namespace GameSystemApi.EventProcessors {
             );
 
             //oncomplete send enter_location_check event
-            await _eventService.SendEvent(enterLocationCheckEvent, gameAggregate.StreamPosition);
+            await _aggregateService.AppendToAggregate(
+                AggregateService.GAME_AGGREGATE_TYPE,
+                enterLocationCheckEvent,
+                gameAggregate.StreamPosition);
         }
     }
 }
